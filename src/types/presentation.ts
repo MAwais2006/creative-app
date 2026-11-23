@@ -1,12 +1,38 @@
 export type SimulationKind =
   | 'hero-prism'
+  | 'snell-waveguide'
   | 'copper-wall'
   | 'wdm-bus'
   | 'mzi-mesh'
   | 'microring-crossbar'
   | 'diffractive-nn'
   | 'fourier-metalens'
-  | 'hybrid-roadmap';
+  | 'hybrid-roadmap'
+  | 'holographic-cache';
+
+export type Hardware3DKind =
+  | 'prism-bench'
+  | 'snell-waveguide'
+  | 'copper-vs-optics'
+  | 'wdm-chip'
+  | 'mzi-chip'
+  | 'crossbar-tower'
+  | 'd2nn-tower'
+  | 'metalens-stack'
+  | 'cpo-stack'
+  | 'holographic-cache';
+
+export type RobotPoseKind =
+  | 'welcome'
+  | 'optics'
+  | 'bottleneck'
+  | 'wdm'
+  | 'mzi'
+  | 'crossbar'
+  | 'diffractive'
+  | 'metalens'
+  | 'caution'
+  | 'eureka';
 
 export interface KeyPoint {
   label: string;
@@ -19,6 +45,13 @@ export interface MetricCallout {
   caption: string;
 }
 
+export interface NovelIdeaSection {
+  name: string;
+  coreMechanism: string;
+  benefits: string[];
+  implementationSteps: string[];
+}
+
 export interface SlideData {
   id: string;
   number: string;
@@ -29,7 +62,13 @@ export interface SlideData {
   keyPoints: KeyPoint[];
   metric?: MetricCallout;
   simulation: SimulationKind;
+  hardware3D: Hardware3DKind;
+  robotPose: RobotPoseKind;
+  robotExpressionLabel: string;
+  robotSpeech: string;
   speakerNotes: string;
+  heroImage?: string;
+  novelIdea?: NovelIdeaSection;
 }
 
 export interface GlossaryEntry {

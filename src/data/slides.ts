@@ -4,274 +4,410 @@ export const SLIDES: SlideData[] = [
   {
     id: 'light-compute-medium',
     number: '01',
-    chapter: 'Introduction',
-    title: 'Computation at the Speed of Light',
+    chapter: 'Physics Lab Intro',
+    title: 'Optics in AI: Light as Compute & Transport',
     subtitle:
-      'Why modern artificial intelligence is shifting from copper interconnects and resistive transistors to waveguides, interference, and diffraction.',
-    equation: 'E_photon = hν  ·  λ = 1550 nm (Silicon Transparency Window)',
+      'What optics is as a branch of physics—and how photons, waveguides, and interference now accelerate modern artificial intelligence.',
+    equation: 'E_photon = hν = hc / λ   ·   c ≈ 3 × 10⁸ m/s',
     keyPoints: [
       {
-        label: 'Zero Resistive Heating',
+        label: 'What Is Optics?',
         detail:
-          'Photons carry no electric charge, eliminating RC wire capacitance and Joule heating during signal transport across silicon dies.',
+          'Optics studies the behavior of electromagnetic radiation—reflection, refraction, diffraction, and interference—from ultraviolet to infrared.',
       },
       {
-        label: 'Native Linear Algebra',
+        label: 'Why AI Needs Optics',
         detail:
-          'Optical interference, diffraction, and superposition compute matrix-vector multiplications passively in a single physical pass.',
+          'Frontier neural networks hit thermal and bandwidth ceilings in copper wires; photons move terabits with zero resistive Joule heating.',
       },
       {
-        label: 'Massive Spectral Parallelism',
+        label: 'Passive Linear Algebra',
         detail:
-          'Dozens of laser wavelengths travel through the exact same waveguide simultaneously without interfering with one another.',
+          'Wave interference and optical diffraction execute matrix multiplications naturally as light propagates through structured silicon.',
       },
     ],
     metric: {
       value: '< 10',
-      unit: 'ps latency',
-      caption: 'Passive optical pass time across a millimeter-scale photonic core',
+      unit: 'ps pass',
+      caption: 'Optical propagation time across a millimeter-scale photonic core',
     },
     simulation: 'hero-prism',
+    hardware3D: 'prism-bench',
+    robotPose: 'welcome',
+    robotExpressionLabel: 'Welcoming · Optical Pointer Ready',
+    robotSpeech:
+      'Welcome to our Physics Lab! Optics turns wave physics into ultra-fast, low-heat AI hardware—watch how a simple prism splits coherent light into parallel compute channels.',
     speakerNotes:
-      'Welcome to this presentation on how optics work in AI. For seventy years, computing relied on moving electrons across metal wires. Today, frontier AI models spend far more energy shuffling weights between memory and compute cores than performing actual arithmetic. Optics solves both transport and linear algebra using the wave physics of light inside silicon nitride and silicon waveguides.',
+      'Open by defining optics in classical and modern physics: controlling light waves using refractive index gradients, mirrors, gratings, and cavities. Then connect directly to AI: modern GPUs spend far more energy moving tensors over copper than computing math. Photonics solves both transport and linear algebra.',
+    heroImage: '/src/assets/images/photonic_ai_wafer_hero_1795410684726.jpg',
+  },
+  {
+    id: 'fundamental-optics-physics',
+    number: '02',
+    chapter: 'Core Physics',
+    title: 'Refraction, Total Internal Reflection & Interference',
+    subtitle:
+      'Four foundational laws of optics govern every AI photonic chip—guiding light inside nanometer silicon channels and combining waves to compute.',
+    equation: 'n₁ sin(θ₁) = n₂ sin(θ₂)   ·   θ_c = arcsin(n₂ / n₁)',
+    keyPoints: [
+      {
+        label: "Snell's Law & Waveguides",
+        detail:
+          'High-index silicon (n ≈ 3.48) surrounded by silica cladding (n ≈ 1.44) traps laser light via Total Internal Reflection around tight bends.',
+      },
+      {
+        label: 'Constructive & Destructive Interference',
+        detail:
+          'Coherent light waves add or cancel based on relative phase Δφ—turning optical phase shifts into programmable arithmetic weights.',
+      },
+      {
+        label: 'Huygens-Fresnel Diffraction',
+        detail:
+          'Every point on a wavefront emits secondary wavelets, allowing free-space phase plates to route signals onto target detector arrays.',
+      },
+    ],
+    metric: {
+      value: '24.4°',
+      unit: 'critical angle',
+      caption: 'Total internal reflection threshold inside a Si/SiO₂ photonic waveguide',
+    },
+    simulation: 'snell-waveguide',
+    hardware3D: 'snell-waveguide',
+    robotPose: 'optics',
+    robotExpressionLabel: 'Explaining · Tracing Ray Angle',
+    robotSpeech:
+      'Notice Snell’s Law in action! Because silicon has a refractive index of 3.48 against silica’s 1.44, any ray steeper than 24.4° bounces cleanly inside the waveguide without leaking.',
+    speakerNotes:
+      'Explain the four pillars of optical physics used in AI hardware: refraction (Snell’s Law), Total Internal Reflection (how waveguides act as optical wires), wave superposition/interference (how MZI chips multiply matrices), and diffraction (how free-space optical networks classify images).',
   },
   {
     id: 'copper-wall',
-    number: '02',
+    number: '03',
     chapter: 'The Bottleneck',
-    title: 'The Copper Wall: Why Electrons Hit a Ceiling',
+    title: 'The Copper Wall: Why Electronic AI Bottlenecks',
     subtitle:
-      'In modern AI accelerators, charging copper traces consumes orders of magnitude more energy than performing floating-point arithmetic.',
+      'In CMOS AI clusters, charging capacitive copper traces consumes orders of magnitude more energy than performing floating-point multiplication.',
     equation: 'E_wire = ½ · C · V² · L   vs.   E_optical ≈ 10 fJ/bit',
     keyPoints: [
       {
-        label: 'Data Movement Dominates',
+        label: 'Memory Transport Dominates',
         detail:
-          'Fetching a single 16-bit weight from HBM memory costs roughly 20 pJ—200× more energy than multiplying it inside a tensor core.',
+          'Fetching one 16-bit weight from HBM costs ~20 pJ—roughly 200× more energy than multiplying it inside a digital tensor core.',
       },
       {
         label: 'Skin Effect & Attenuation',
         detail:
-          'At 100+ Gbps per lane, high-frequency electrical signals attenuate sharply in copper, limiting reach to centimeters without retimers.',
+          'At 100+ Gbps per lane, electrical pulses attenuate severely in copper PCB traces, requiring power-hungry retimers past centimeters.',
       },
       {
         label: 'Shoreline Bandwidth Density',
         detail:
-          'Optical fibers pack terabits per second into micron-scale waveguide facets, breaking the electrical pin-count wall of GPU packages.',
+          'Micron-scale optical waveguides pack terabits per second per millimeter of die edge, breaking the electrical pin-count ceiling.',
       },
     ],
     metric: {
       value: '200×',
       unit: 'energy gap',
-      caption: 'HBM memory fetch (~20 pJ) vs. INT8/FP16 multiply-accumulate (~0.1 pJ)',
+      caption: 'HBM weight fetch (~20 pJ) vs. INT8/FP16 multiply-accumulate (~0.1 pJ)',
     },
     simulation: 'copper-wall',
+    hardware3D: 'copper-vs-optics',
+    robotPose: 'bottleneck',
+    robotExpressionLabel: 'Analytical · Highlighting Thermal Loss',
+    robotSpeech:
+      'Look at the red-hot copper bus compared to the cool photonic ribbon! Copper loses energy quadratically with voltage and length, while waveguides carry terabits coolly across meters.',
     speakerNotes:
-      'Use the controls on the right to scale model size and interconnect reach. Notice how on-die arithmetic stays tiny compared to copper wire capacitance as distance grows past a few millimeters. Optical waveguides lose less than 0.1 dB per centimeter and require nearly the same energy at 10 meters as at 10 centimeters.',
+      'Contrast the physical scaling of electrons in copper versus photons in dielectric waveguides. Emphasize that AI scaling is increasingly memory- and interconnect-bound rather than arithmetic-bound.',
   },
   {
     id: 'wdm-interconnects',
-    number: '03',
+    number: '04',
     chapter: 'Optical Transport',
     title: 'Wavelength-Division Multiplexing (WDM)',
     subtitle:
-      'A single silicon photonic waveguide carries multiple independent AI data streams simultaneously by assigning each to its own laser wavelength.',
-    equation: 'Total Bandwidth = N_λ × f_mod   (e.g., 16 λ × 64 Gbps = 1.024 Tbps)',
+      'A single silicon nitride waveguide carries dozens of independent AI tensor streams simultaneously by assigning each to a distinct laser color.',
+    equation: 'Total Bandwidth = N_λ × f_mod   (16 λ × 64 Gbps = 1.024 Tbps)',
     keyPoints: [
       {
-        label: 'Superposition Without Crosstalk',
+        label: 'Linear Superposition Without Crosstalk',
         detail:
-          'Linear optical media allow distinct wavelengths (1530–1565 nm C-band) to co-propagate down one 500 nm waveguide cleanly.',
+          'Distinct C-band laser wavelengths (1530–1565 nm) co-propagate down one 500 nm waveguide without interacting.',
       },
       {
         label: 'Microring Modulators',
         detail:
-          'Microscopic silicon rings (5–10 µm radius) resonate at exact wavelengths to imprint electrical tensor data onto light at 50+ GHz.',
+          'Resonant silicon rings (5–10 µm radius) trap one exact wavelength each to imprint digital tensor bits at 50+ GHz.',
       },
       {
-        label: 'All-to-All Cluster Fabrics',
+        label: 'Co-Packaged Cluster Fabrics',
         detail:
-          'Co-packaged optics (CPO) bring fiber directly to the GPU substrate, turning rack-scale tensor parallelism into low-latency optical switching.',
+          'Optical fibers terminate directly on GPU substrates, turning rack-scale tensor parallelism into low-latency optical switching.',
       },
     ],
     metric: {
       value: '1.6+',
       unit: 'Tbps / fiber',
-      caption: 'Aggregate bidirectional optical bandwidth per single-mode fiber strand',
+      caption: 'Bidirectional optical throughput per hair-thin single-mode fiber',
     },
     simulation: 'wdm-bus',
+    hardware3D: 'wdm-chip',
+    robotPose: 'wdm',
+    robotExpressionLabel: 'Demonstrating · Multi-λ Alignment',
+    robotSpeech:
+      'Each glowing microring on this chip locks onto one specific laser wavelength. Four or sixteen different data streams share the exact same physical waveguide at once!',
     speakerNotes:
-      'Toggle individual C-band laser wavelengths in the interactive bench to observe how multiple data streams merge onto one physical bus. At the receiver end, wavelength-selective microring drop filters peel off each color onto its dedicated germanium photodiode.',
+      'Highlight how WDM gives optics an extra physical dimension—frequency/wavelength—that copper wires simply do not have. Explain how microring resonators act as precision spectral filters.',
   },
   {
     id: 'mzi-matrix-multiplication',
-    number: '04',
-    chapter: 'Coherent Computing',
-    title: 'Mach-Zehnder Interferometers for Matrix Math',
+    number: '05',
+    chapter: 'Coherent Hardware',
+    title: 'Mach-Zehnder Interferometers (MZI) for Matrix Math',
     subtitle:
-      'Neural networks are 90% matrix-vector products. Meshes of Mach-Zehnder Interferometers (MZIs) encode weights as optical phase shifts.',
+      'Neural networks are 90% matrix-vector multiplications. 3D meshes of Mach-Zehnder Interferometers encode weights as optical phase shifts.',
     equation: 'U(θ, φ) = [ e^(iφ) sin(θ/2), cos(θ/2) ; e^(iφ) cos(θ/2), -sin(θ/2) ]',
     keyPoints: [
       {
         label: '50:50 Directional Couplers',
         detail:
-          'Two waveguides brought within nanometers split incoming light evenly, creating two coherent paths whose relative phases can be tuned.',
+          'Waveguides brought within ~200 nm split coherent light evenly into two arms via evanescent field coupling.',
       },
       {
-        label: 'Phase Shifters as Weights',
+        label: 'Thermo-Optic Phase Shifters',
         detail:
-          'Thermo-optic or electro-optic phase shifters delay one arm by θ radians, steering constructive interference between output ports.',
+          'Gold micro-heaters tune refractive index (dn/dT) by fractions of a kelvin, shifting phase by θ radians to steer output power.',
       },
       {
-        label: 'Clements & Reck Meshes',
+        label: 'Clements Unitary Mesh',
         detail:
-          'By tiling N(N−1)/2 MZIs in a triangular or rectangular lattice, light physically executes any arbitrary N×N unitary matrix via SVD.',
+          'Tiling N(N−1)/2 MZIs implements any arbitrary N×N matrix via Singular Value Decomposition in one speed-of-light pass.',
       },
     ],
     metric: {
       value: 'O(1)',
-      unit: 'pass time',
-      caption: 'Matrix multiplication completes as fast as light crosses the waveguide mesh',
+      unit: 'pass latency',
+      caption: 'Matrix multiplication completes as fast as photons traverse the mesh',
     },
     simulation: 'mzi-mesh',
+    hardware3D: 'mzi-chip',
+    robotPose: 'mzi',
+    robotExpressionLabel: 'Precision Mode · Tuning Phase θ',
+    robotSpeech:
+      'Here is the heart of coherent photonic AI! Gold electrodes apply a tiny phase delay θ in one waveguide arm, steering constructive interference straight into the desired output port.',
     speakerNotes:
-      'Adjust the input amplitudes x₁ and x₂ alongside the internal phase shift θ and external phase φ. You are looking at the fundamental building block of coherent photonic AI accelerators (such as Lightmatter or MIT photonic chips): interference at the second coupler directly computes a 2×2 unitary transformation.',
+      'Walk through the 3D MZI chip: light enters two ports, splits at the first directional coupler, receives phase shifts θ and φ from the golden heaters, and recombines at the second coupler. Interference physically performs a 2×2 unitary matrix multiply.',
+    heroImage: '/src/assets/images/mzi_optical_waveguide_die_1795410684850.jpg',
   },
   {
     id: 'microring-crossbar',
-    number: '05',
-    chapter: 'Incoherent Computing',
-    title: 'Microring Weight Banks & Optical Crossbars',
+    number: '06',
+    chapter: 'Incoherent Hardware',
+    title: 'Microring Weight Banks & Photonic Crossbars',
     subtitle:
-      'Incoherent photonic tensor cores combine WDM wavelengths with tunable microring resonators to compute dot products via optical power summation.',
-    equation: 'y_i = Σ_j  w_ij · x_j   (Weighted via ring drop transmission T(λ_j))',
+      'Incoherent optical tensor cores combine WDM wavelengths with tunable microring resonators to compute dot products by optical power summation.',
+    equation: 'y_i = Σ_j  w_ij · x_j   (Drop-port vs. Through-port subtraction)',
     keyPoints: [
       {
-        label: 'Analog Weight Tuning',
+        label: 'Continuous Analog Weighting',
         detail:
-          'Shifting a ring’s refractive index slightly detunes its resonance peak, continuously controlling how much laser power passes to the drop port.',
+          'Detuning a microring’s resonance peak smoothly controls how much laser power drops from the column bus into the row sum bus.',
       },
       {
         label: 'Balanced Photodetection',
         detail:
-          'Differential pairs of photodiodes subtract Through-port and Drop-port currents, naturally representing signed positive and negative weights.',
+          'Differential photodiode pairs subtract Drop and Through photocurrents, naturally encoding both positive and negative weights.',
       },
       {
-        label: 'Compact Footprint',
+        label: 'Compact Wafer Footprint',
         detail:
-          'Microring arrays pack far denser than MZI meshes and operate without needing global phase coherence across the entire chip.',
+          'Microring crossbars pack far denser than MZI lattices and require no chip-wide phase-coherence stabilization.',
       },
     ],
     metric: {
       value: '10–50',
       unit: 'fJ / MAC',
-      caption: 'Effective energy per analog multiply-accumulate operation at high clock rates',
+      caption: 'Effective analog energy per multiply-accumulate at multi-GHz clock rates',
     },
     simulation: 'microring-crossbar',
+    hardware3D: 'crossbar-tower',
+    robotPose: 'crossbar',
+    robotExpressionLabel: 'Scanning · 3×3 Crossbar Matrix',
+    robotSpeech:
+      'In this 3D crossbar tower, each ring resonator acts like an analog synaptic weight! Photodiodes at the end sum every wavelength’s power simultaneously via Kirchhoff’s law.',
     speakerNotes:
-      'Click any weight ring in the 3×3 matrix or adjust the input laser intensities. Notice how each column carries three wavelengths together, and each ring selectively couples only its matched wavelength into the horizontal summation bus feeding the balanced detector.',
+      'Compare MZI meshes (coherent, phase-sensitive) against microring weight banks (incoherent, intensity-based). Point out how balanced photodetection unlocks signed weights.',
   },
   {
     id: 'diffractive-neural-networks',
-    number: '06',
+    number: '07',
     chapter: 'Free-Space Optics',
     title: 'Diffractive Deep Neural Networks (D²NN)',
     subtitle:
-      'Instead of etched waveguides, stacked transmissive phase masks compute inference in free space through Huygens-Fresnel wave diffraction.',
-    equation: 'U_m(x, y) = Σ_n  U_{m-1}(x_n, y_n) · h(r) · exp(i · Δφ_m(x_n, y_n))',
+      'Stacked 3D-printed or etched phase-modulation plates compute neural inference in free space purely through Huygens-Fresnel diffraction.',
+    equation: 'U_m(x, y) = Σ_n  U_{m-1}(x_n, y_n) · h(r) · exp(i · Δφ_m)',
     keyPoints: [
       {
-        label: 'Every Pixel Is a Neuron',
+        label: 'Every Micron Pixel Is a Neuron',
         detail:
-          'Each micron-scale feature on a phase mask modulates the phase of passing light and radiates a secondary spherical wavelet to the next layer.',
+          'Each transparent feature delays the passing wavefront’s phase and radiates a secondary spherical wavelet to every neuron on the next plate.',
       },
       {
-        label: 'Trained via Backpropagation',
+        label: 'Backpropagation Before Fabrication',
         detail:
-          'Digital simulators use complex-valued gradient descent to optimize layer phase profiles before etching them onto silica wafers.',
+          'Complex-valued gradient descent optimizes layer phase profiles on a GPU before lithographic etching onto silica wafers.',
       },
       {
         label: 'Zero Runtime Compute Power',
         detail:
-          'Once fabricated, the optical network classifies images or wavefronts passively using only the illuminating coherent beam.',
+          'Once fabricated, the optical tower classifies scenes passively using only the illuminating laser beam.',
       },
     ],
     metric: {
       value: '10⁶+',
       unit: 'neurons / cm²',
-      caption: 'Parallel diffractive connections propagating simultaneously in free space',
+      caption: 'Massively parallel diffractive connections propagating at the speed of light',
     },
     simulation: 'diffractive-nn',
+    hardware3D: 'd2nn-tower',
+    robotPose: 'diffractive',
+    robotExpressionLabel: 'Observing · Wavefront Diffraction',
+    robotSpeech:
+      'No wires at all! Light passes through stacked phase-sculpted glass plates, diffracting and focusing all classification energy onto one winning detector bin.',
     speakerNotes:
-      'Select different input light patterns in the simulator to watch coherent wavefronts diffract across two trained phase-modulation planes. Constructive interference concentrates optical energy onto the matching class photodetector bin at the output plane.',
+      'Explain how D²NNs eliminate waveguides entirely. Show how each plate acts like a physical fully-connected linear layer in Fourier/Fresnel space, trained offline and frozen into glass.',
   },
   {
     id: 'smart-optics-metalens',
-    number: '07',
+    number: '08',
     chapter: 'Optical Vision',
-    title: 'Optical Pre-Processing & Metalens AI Vision',
+    title: 'Nanophotonic Metalenses & 4f Optical Vision',
     subtitle:
-      'Co-designing optics with neural networks moves early convolutional layers out of power-hungry GPUs and directly into the camera lens.',
+      'Co-designing optics with neural networks moves early convolutional layers out of power-hungry GPUs and directly into flat camera optics.',
     equation: 'E_sensor(u, v) = ℱ⁻¹ { M(f_x, f_y) · ℱ{ E_scene(x, y) } }',
     keyPoints: [
       {
-        label: '4f Fourier Filtering',
+        label: '4f Spatial Fourier Filtering',
         detail:
-          'A lens naturally computes a 2D spatial Fourier transform at its focal plane, enabling instant analog edge detection and kernel convolution.',
+          'A lens naturally computes a 2D Fourier transform at its focal plane, enabling instant analog edge detection and kernel convolution.',
       },
       {
-        label: 'Sub-Wavelength Metalenses',
+        label: 'TiO₂ Nanopillar Metalenses',
         detail:
-          'Arrays of TiO₂ nanopillars sculpt wavefront phase and polarization in a flat film thinner than a human hair, replacing bulky curved glass.',
+          'Sub-wavelength dielectric pillars sculpt wavefront phase in a flat film thinner than a human hair, replacing bulky curved glass.',
       },
       {
-        label: 'Privacy & Edge Bandwidth',
+        label: 'Edge Latency & Bandwidth Savings',
         detail:
-          'Extracting sparse semantic features or depth cues optically reduces sensor readout bandwidth and latency for autonomous robotics.',
+          'Extracting edges or depth cues optically cuts sensor readout power and latency for autonomous drones and robotics.',
       },
     ],
     metric: {
       value: '1000×',
       unit: 'thinner optics',
-      caption: 'Planar nanophotonic metalens (~500 nm) compared to millimeter glass doublets',
+      caption: 'Planar 500 nm nanophotonic metalens vs. millimeter curved glass doublets',
     },
     simulation: 'fourier-metalens',
+    hardware3D: 'metalens-stack',
+    robotPose: 'metalens',
+    robotExpressionLabel: 'Inspecting · Nanopillar Array',
+    robotSpeech:
+      'Look closely at those sub-wavelength titanium dioxide pillars! They bend incoming scene light to compute edge-detection convolutions before photons even touch the CMOS sensor.',
     speakerNotes:
-      'Switch between optical Fourier pupil masks—such as High-Pass Edge Detection or Directional Sobel—to see how a passive optical element performs first-layer CNN feature extraction before photons even reach the silicon pixel array.',
+      'Bridge computer vision and nanophotonics: why capture millions of raw redundant pixels when a flat metalens can pre-compute spatial convolutions at zero compute energy?',
+    heroImage: '/src/assets/images/nanophotonic_metalens_sensor_1795410684828.jpg',
   },
   {
     id: 'hybrid-roadmap',
-    number: '08',
-    chapter: 'Architecture & Future',
-    title: 'The Hybrid Photonic-CMOS Roadmap',
+    number: '09',
+    chapter: 'System Limits',
+    title: 'Hybrid Photonic-CMOS Architecture & Limits',
     subtitle:
-      'Photons do not easily interact with photons—so the future of AI hardware pairs optical linear engines with electronic memory and nonlinearities.',
+      'Photons do not easily interact with photons—so the winning AI architecture pairs optical linear engines with CMOS memory and nonlinearities.',
     equation: 'y = σ_CMOS(  W_photonic · x  )   [O-E-O Hybrid Loop]',
     keyPoints: [
       {
-        label: 'Hard Limits of Pure Optics',
+        label: 'Why Pure Optics Is Hard',
         detail:
-          'Photons lack resting mass and strong self-interaction, making compact optical SRAM memory and low-power ReLU/Softmax gates challenging.',
+          'Photons lack resting mass and strong self-interaction, making dense optical SRAM memory and low-power ReLU/Softmax difficult.',
       },
       {
-        label: 'Precision & DAC/ADC Overhead',
+        label: 'DAC / ADC Conversion Floor',
         detail:
-          'Analog optical compute excels at 4-to-8-bit inference, but converting signals back and forth via high-speed DACs/ADCs sets the efficiency floor.',
+          'Analog optical cores shine at 4–8 bit inference, but high-speed O-E-O conversion sets the energy floor unless tiles are large.',
       },
       {
-        label: 'Co-Packaged Synergy',
+        label: '3D Co-Packaged Synergy',
         detail:
-          'Industry architectures embed silicon photonic interposers beneath CMOS chiplets—uniting photonic scale-out fabrics with electronic control.',
+          'Silicon photonic interposers bonded beneath CMOS chiplets let light handle linear projections and cluster fabrics while CMOS handles logic.',
       },
     ],
     metric: {
       value: '2026–30',
       unit: 'CPO era',
-      caption: 'Transition from pluggable optical transceivers to co-packaged photonic substrates',
+      caption: 'Industry shift from pluggable transceivers to co-packaged photonic substrates',
     },
     simulation: 'hybrid-roadmap',
+    hardware3D: 'cpo-stack',
+    robotPose: 'caution',
+    robotExpressionLabel: 'Evaluating · Trade-offs & Limits',
+    robotSpeech:
+      'Be honest like a good physicist: photons are terrible at sitting still in SRAM or doing nonlinear ReLU! That is why 3D co-packaged photonic-CMOS stacks unite the best of both worlds.',
     speakerNotes:
-      'To close: optics is not replacing transistors wholesale. Instead, AI systems are converging on a division of labor—photons move terabits and execute dense linear projections, while CMOS transistors store state, apply nonlinear activations, and orchestrate control flow.',
+      'Present a rigorous, balanced engineering view. Use the exploded 3D CPO stack to show how HBM, CMOS compute chiplets, and silicon photonic interposers stack vertically.',
+  },
+  {
+    id: 'novel-holographic-cache',
+    number: '10',
+    chapter: 'Novel Invention',
+    title: 'New Idea: Chromo-Synaptic Holographic Cache (CSHC)',
+    subtitle:
+      'An unexplored optical AI memory architecture: storing LLM Key-Value caches as 3D Bragg holograms inside photorefractive crystals for O(1) optical attention.',
+    equation: 'Attn_Scores(Q) = ℐ_Bragg( θ_Q, λ ) ∝ | Q · Kᵀ |²   [Zero HBM Fetch]',
+    keyPoints: [
+      {
+        label: 'The Unsolved Problem',
+        detail:
+          'Long-context LLMs (100k–1M tokens) stall on streaming huge KV-caches from HBM every single generated token.',
+      },
+      {
+        label: 'The Novel Mechanism',
+        detail:
+          'Encode Attention Keys as 3D refractive-index gratings inside an Fe:LiNbO₃ crystal via crossed write beams; read millions of dot products in one flash.',
+      },
+      {
+        label: 'Real-World Benefit & Impact',
+        detail:
+          'Replaces O(N) memory bandwidth sweeps with a single O(1) Bragg diffraction lookup—slashing KV-cache energy by up to 100×.',
+      },
+    ],
+    metric: {
+      value: 'O(1)',
+      unit: 'KV lookup',
+      caption: 'Simultaneous holographic inner product across 100k+ angularly multiplexed keys',
+    },
+    simulation: 'holographic-cache',
+    hardware3D: 'holographic-cache',
+    robotPose: 'eureka',
+    robotExpressionLabel: 'Eureka Mode · Novel Architecture',
+    robotSpeech:
+      'Here is our original idea! A Chromo-Synaptic Holographic Cache stores LLM Attention Keys as 3D light-interference gratings inside a Lithium Niobate crystal—computing Q·Kᵀ across 100k tokens in a single optical flash!',
+    speakerNotes:
+      'Present this final slide as an original physics-meets-AI proposal: photorefractive volume holography applied to Transformer KV-cache attention lookup. Walk through the exact 3-step hardware implementation using Thin-Film Lithium Niobate, acousto-optic angular steering, and sparse Top-k CMOS Value readout.',
+    novelIdea: {
+      name: 'Chromo-Synaptic Holographic Cache (CSHC)',
+      coreMechanism:
+        'Use angle- and wavelength-multiplexed Bragg volume holography inside iron-doped Lithium Niobate (Fe:LiNbO₃) bonded to a silicon photonic interposer to store Transformer Key vectors as 3D refractive-index gratings.',
+      benefits: [
+        'Eliminates O(N) HBM bandwidth bottleneck during autoregressive LLM decoding across 100k–1M token contexts.',
+        'Computes inner products Q·Kᵀ physically across all stored holograms in parallel (~15 ps) via Bragg diffraction intensity.',
+        'Non-volatile photorefractive retention during inference sessions with zero static refresh power.',
+      ],
+      implementationSteps: [
+        'Fabricate a Thin-Film Lithium Niobate (TFLN) waveguide slab co-packaged beside a CMOS attention chiplet with an integrated 2D acousto-optic beam deflector.',
+        'Write Phase (488 nm blue beam): During prompt prefill, interfere each token Key vector wavefront with an angle-indexed reference beam (θ_t) to record its Bragg grating.',
+        'Read Phase (1550 nm non-destructive C-band beam): Steer the current Query wavefront into the crystal; diffracted beam intensities on a photodiode array directly identify the Top-k relevant tokens for CMOS Value retrieval.',
+      ],
+    },
   },
 ];
 
@@ -281,55 +417,55 @@ export const GLOSSARY_ENTRIES: GlossaryEntry[] = [
     symbol: 'Si₃N₄ / Si',
     category: 'Integrated Photonics',
     definition:
-      'A microscopic dielectric channel (typically 400–800 nm wide) that confines and steers laser light via total internal reflection on a silicon chip.',
+      'A microscopic dielectric channel (400–800 nm wide) confining laser light via total internal reflection on a silicon chip.',
   },
   {
     term: 'Wavelength-Division Multiplexing (WDM)',
     symbol: 'λ₁…λₙ',
     category: 'Optical Transport',
     definition:
-      'Transmitting multiple independent data streams simultaneously through a single optical fiber or waveguide by assigning each stream a distinct laser wavelength.',
+      'Transmitting multiple independent data streams simultaneously down one fiber or waveguide using distinct laser wavelengths.',
   },
   {
     term: 'Mach-Zehnder Interferometer (MZI)',
     symbol: 'U(θ, φ)',
     category: 'Coherent Compute',
     definition:
-      'An optical circuit that splits light into two arms, shifts their relative phase, and recombines them to perform programmable 2×2 unitary matrix multiplication.',
+      'An optical circuit that splits light into two arms, shifts relative phase, and recombines beams to perform programmable 2×2 unitary matrix math.',
   },
   {
     term: 'Microring Resonator (MRR)',
     symbol: 'T(λ)',
     category: 'Incoherent Compute',
     definition:
-      'A circular waveguide loop coupled to a straight bus that traps and modulates or weights a specific resonant wavelength while letting other wavelengths pass.',
-  },
-  {
-    term: 'Co-Packaged Optics (CPO)',
-    symbol: 'Tbps/mm',
-    category: 'System Packaging',
-    definition:
-      'Integrating photonic transceivers directly alongside compute silicon on the same substrate or interposer to eliminate long copper PCB traces.',
+      'A circular waveguide loop coupled to a bus that traps and modulates or weights a specific resonant wavelength.',
   },
   {
     term: 'Diffractive Deep Neural Network (D²NN)',
     symbol: 'Δφ(x,y)',
     category: 'Free-Space Optics',
     definition:
-      'Stacked physical phase-mask layers that compute neural network inference through free-space wave diffraction and constructive interference.',
+      'Stacked physical phase-mask layers computing neural inference through free-space wave diffraction and constructive interference.',
   },
   {
-    term: 'Metalens',
+    term: 'Nanophotonic Metalens',
     symbol: 'TiO₂',
     category: 'Optical Vision',
     definition:
-      'A flat nanostructured surface composed of sub-wavelength pillars engineered to focus light or execute optical Fourier convolutions directly before a camera sensor.',
+      'A flat nanostructured surface of sub-wavelength pillars that focuses light or executes optical Fourier convolutions before a camera sensor.',
   },
   {
-    term: 'O-E-O Conversion',
-    symbol: 'DAC / ADC',
-    category: 'Hybrid Architecture',
+    term: 'Co-Packaged Optics (CPO)',
+    symbol: 'Tbps/mm',
+    category: 'System Packaging',
     definition:
-      'Optical-Electrical-Optical conversion—translating digital bits into modulated laser light and back via photodiodes, often the primary power bottleneck in analog optical compute.',
+      'Integrating photonic engines directly alongside compute silicon on the same interposer substrate to eliminate long copper traces.',
+  },
+  {
+    term: 'Bragg Volume Holography',
+    symbol: 'Fe:LiNbO₃',
+    category: 'Novel Holographic AI',
+    definition:
+      'Storing 3D interference patterns inside a photorefractive crystal so angularly steered query beams recall associative inner products in parallel.',
   },
 ];
